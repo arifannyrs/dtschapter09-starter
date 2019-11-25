@@ -1,5 +1,6 @@
 package polinema.ac.id.dtsapp;
 
+import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,6 +17,8 @@ public class RegisterActivity extends AppCompatActivity
     private EditText edtPassword;
     private EditText edtEmail;
     private EditText edtPhoneNumber;
+    // Loading indicator untuk ditampilkan saat menyimpan data
+    ProgressDialog loadingIndicator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -47,6 +50,15 @@ public class RegisterActivity extends AppCompatActivity
 
         // Kembali ke halaman login
         this.finish();
+    }
+
+    private void showLoadingIndicator()
+    {
+        loadingIndicator = new ProgressDialog(this);
+        loadingIndicator.setMessage("Uploading user data to server...");
+        loadingIndicator.setIndeterminate(false);
+        loadingIndicator.setCancelable(false);
+        loadingIndicator.show();
     }
 
     // Membuat Entity class User baru berdasarkan isian user pada EditText-EditText
