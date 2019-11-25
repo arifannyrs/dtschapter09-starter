@@ -12,6 +12,10 @@ import android.widget.Toast;
 
 import java.util.Objects;
 
+import polinema.ac.id.dtsapp.data.AppDbProvider;
+import polinema.ac.id.dtsapp.data.User;
+import polinema.ac.id.dtsapp.data.UserDao;
+
 public class WelcomeBackActivity extends AppCompatActivity {
 
     private static final String DUMMY_USERNAME = "dtsawardee";
@@ -148,12 +152,26 @@ public class WelcomeBackActivity extends AppCompatActivity {
         // Teruskan sendiri...
     }
 
+    // QUIZ!!
     private boolean validateCredential()
     {
         String currentUsername = this.edtUsername.getText().toString();
         String currentPassword = this.edtPassword.getText().toString();
 
-        return (Objects.equals(currentUsername, DUMMY_USERNAME)
-                && Objects.equals(currentPassword, DUMMY_PASSWORD));
+        UserDao daoUser = AppDbProvider.getInstance(this.getApplicationContext()).userDao();
+        User u = daoUser.findByUsernameAndPassword(currentUsername, currentPassword);
+
+        if (u == null)
+            return  false;
+        else
+            return true;
+
+  /*
+  return (Objects.equals(currentUsername, DUMMY_USERNAME)
+          && Objects.equals(currentPassword, DUMMY_PASSWORD));
+  */
+
+        // Teruskan sendiri....
+
     }
 }
