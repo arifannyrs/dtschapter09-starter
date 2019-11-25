@@ -137,11 +137,13 @@ public class WelcomeBackActivity extends AppCompatActivity {
 
         boolean keepLogin = this.sharedPrefs.getBoolean(KEEP_LOGIN_KEY, false);
 
-        if(keepLogin != true)
+        if(keepLogin == true)
         {
-            this.edtUsername.getText(false);
+            Intent i = new Intent(WelcomeBackActivity.this, HomeActivity.class);
+            startActivity(i);
+//            this.edtUsername.getText(false);
 
-            this.chkKeepLogin.setChecked(true);
+//            this.chkKeepLogin.setChecked(true);
         }
         // Teruskan sendiri...
     }
